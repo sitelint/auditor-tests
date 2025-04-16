@@ -5,6 +5,7 @@
   "main": "tests/run.js",
   "scripts": {
     "clear:dev": "shx rm -rf ./client/rules",
+    "build:dev": "npm run sass:dev",
     "sass:dev": "sass tests/sass/public.scss tests/assets/css/public.css --no-source-map",
     "tests:run": "node ./tests/run.js",
     "test": "echo \"Error: no test specified\" && exit 1"
