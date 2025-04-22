@@ -47,8 +47,6 @@ const nav = $('<nav aria-label="Tests" id="testsNavigation" class="tests-navigat
 const ul = $('<ul></ul>');
 const details = nav.find('details');
 
-const appJs = $(`<script src="/${projectGitHubId}/${pathPosix.relative(path.join(rootDir, '../'), 'tests/assets/scripts/app.js')}"></script>`);
-
 details.append(ul);
 
 for (const file of files) {
@@ -93,9 +91,14 @@ for (const file of files) {
     }
   }
 
-  const head = $('head');
+  const existingAppScript = $('#appScript');
 
-  head.append(appJs);
+  if (existingAppScript.length === 0) {
+    const appJs = $(`<script id="appScript" src="/${projectGitHubId}/${pathPosix.relative(path.join(rootDir, '../'), 'tests/assets/scripts/app.js')}"></script>`);
+    const head = $('head');
+
+    head.append(appJs);
+  }
 
   const formattedHTML = await formatHTML($.html());
 
