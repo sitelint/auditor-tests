@@ -41,10 +41,11 @@ if (files.length === 0) {
 }
 
 const $ = cheerio.load('<html></html>');
-const nav = $('<nav aria-label="Tests" id="testsNavigation"></nav>');
+const nav = $('<nav aria-label="Tests" id="testsNavigation" class="tests-navigation"><details><summary>Tests</summary></details></nav>');
 const ul = $('<ul></ul>');
+const details = nav.find('details');
 
-nav.append(ul);
+details.append(ul);
 
 for (const file of files) {
   if (fileExistsAndHasSize(file) === false) {

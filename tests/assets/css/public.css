@@ -9,3 +9,19 @@ h1,
 h2 {
   font-family: "Inter", "SF Pro Text", "Helvetica Neue", "Helvetica", "Segoe UI", "Arial", sans-serif;
 }
+
+.tests-navigation details {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+.tests-navigation summary {
+  cursor: pointer;
+  font-weight: bold;
+}
+.tests-navigation summary::marker {
+  content: "+ ";
+  font-size: 1.5em;
+}
+.tests-navigation details[open] summary::marker {
+  content: "- ";
+}

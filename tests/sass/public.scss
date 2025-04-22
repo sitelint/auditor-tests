@@ -1,11 +1,31 @@
 body {
   background: #f6f9fe;
-  font-family: "Inter", "SF Pro Text", "Helvetica Neue", "Helvetica", "Segoe UI", "Arial", sans-serif;
+  font-family: 'Inter', 'SF Pro Text', 'Helvetica Neue', 'Helvetica', 'Segoe UI', 'Arial', sans-serif;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
 }
 
 h1,
 h2 {
-  font-family: "Inter", "SF Pro Text", "Helvetica Neue", "Helvetica", "Segoe UI", "Arial", sans-serif;
+  font-family: 'Inter', 'SF Pro Text', 'Helvetica Neue', 'Helvetica', 'Segoe UI', 'Arial', sans-serif;
+}
+
+.tests-navigation {
+  details {
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+  summary {
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  summary::marker {
+    content: '+ ';
+    font-size: 1.5em;
+  }
+
+  details[open] summary::marker {
+    content: '- ';
+  }
 }
