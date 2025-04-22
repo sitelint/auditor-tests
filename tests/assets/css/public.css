@@ -18,12 +18,3 @@ h2 {
   cursor: pointer;
   font-weight: bold;
 }
-.tests-navigation summary::marker {
-  display: inline-block;
-  content: "+ ";
-  font-size: 1.5em;
-  width: 1.5rem;
-}
-.tests-navigation details[open] summary::marker {
-  content: "- ";
-}

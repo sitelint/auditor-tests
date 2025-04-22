@@ -47,6 +47,8 @@ const nav = $('<nav aria-label="Tests" id="testsNavigation" class="tests-navigat
 const ul = $('<ul></ul>');
 const details = nav.find('details');
 
+const appJs = $(`<script src="/${projectGitHubId}/${pathPosix.relative(path.join(rootDir, '../'), 'scripts/app.js')}"></script>`);
+
 details.append(ul);
 
 for (const file of files) {
@@ -90,6 +92,10 @@ for (const file of files) {
       console.log('[build/createNavListOfAllRules.js] No <body> tag found in file:', file);
     }
   }
+
+  const head = $('head');
+
+  head.append(appJs);
 
   const formattedHTML = await formatHTML($.html());
 
