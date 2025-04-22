@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import * as pathPosix from 'node:path/posix';
 import { fileURLToPath } from 'node:url';
 import glob from 'glob-all';
 import * as cheerio from 'cheerio';
@@ -28,6 +29,7 @@ const formatHTML = async (html) => {
   return formattedHTML;
 };
 
+const projectGitHubId = 'auditor-tests';
 const rootDir = path.dirname(fileURLToPath(import.meta.url));
 const globPattern = [
   `${path.join(rootDir, '../tests/rules/**/*.e2e.html')}`,
@@ -54,9 +56,7 @@ for (const file of files) {
 
   const content = fs.readFileSync(file, 'utf8');
   const $ = cheerio.load(content);
-
-  const filePath = path.relative(path.join(rootDir, '../'), file);
-  const relativePath = filePath.split(path.sep).slice(1).join(path.sep);
+  const relativePath = `/${projectGitHubId}/${pathPosix.relative(path.join(rootDir, '../'), file)}`;
 
   const title = $('title').text() || path.basename(file);
   const li = $('<li></li>');
