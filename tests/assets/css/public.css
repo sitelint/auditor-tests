@@ -24,4 +24,5 @@ h2 {
 }
 .tests-navigation details[open] summary::marker {
   content: "- ";
+  font-size: 1.5em;
 }
