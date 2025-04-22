@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "SiteLint Auditor Testing Framework for creating and testing cases for each rules.",
   "main": "tests/run.js",
+  "type": "module",
   "scripts": {
     "clear:dev": "shx rm -rf ./client/rules",
-    "build:dev": "npm run sass:dev",
+    "build:dev": "npm run sass:dev && node build/createNavListOfAllRules.js",
     "sass:dev": "sass tests/sass/public.scss tests/assets/css/public.css --no-source-map",
     "tests:run": "node ./tests/run.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,8 +18,12 @@
     "express": "5.1.0"
   },
   "devDependencies": {
+    "@types/cheerio": "0.22.35",
+    "@types/prettier": "2.7.3",
+    "cheerio": "1.0.0",
     "glob-all": "3.3.1",
-    "puppeteer": "24.6.1",
-    "sass": "1.86.3"
+    "prettier": "3.5.3",
+    "puppeteer": "24.7.0",
+    "sass": "1.87.0"
   }
 }

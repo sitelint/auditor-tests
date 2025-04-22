@@ -1,0 +1,9 @@
+.DS_Store
+**/*.png
+**/*.ico
+**/*.gitignore
+**/*.gitattributes
+**/*.yaml
+**/*.json
+**/*.js
+README.md

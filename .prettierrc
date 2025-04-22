@@ -1,0 +1,10 @@
+{
+  "singleQuote": true,
+  "trailingComma": "none",
+  "printWidth": 160,
+  "tabWidth": 2,
+  "arrowParens": "always",
+  "htmlFormatOptions": {
+    "singleAttributePerLine": false
+  }
+}
