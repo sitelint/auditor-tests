@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import * as pathPosix from 'node:path/posix';
 import glob from 'glob-all';
 import * as cheerio from 'cheerio';
 import prettier from 'prettier';
@@ -54,7 +55,7 @@ for (const file of files) {
   const content = fs.readFileSync(file, 'utf8');
   const $ = cheerio.load(content);
 
-  const relativePath = path.relative(path.join(rootDir, '../'), file);
+  const relativePath = '/' + pathPosix.relative(path.join(rootDir, '../'), file);
   const title = $('title').text() || path.basename(file);
   const li = $('<li></li>');
   const a = $(`<a href="${relativePath}">${title}</a>`);
