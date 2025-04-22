@@ -43,7 +43,7 @@ if (files.length === 0) {
 }
 
 const $ = cheerio.load('<html></html>');
-const nav = $('<nav aria-label="Tests" id="testsNavigation" class="tests-navigation"><details><summary>Tests</summary></details></nav>');
+const nav = $('<test-navigation><nav aria-label="Tests" id="testsNavigation" class="tests-navigation"><details><summary>Tests</summary></details></nav><test-navigation>');
 const ul = $('<ul></ul>');
 const details = nav.find('details');
 
