@@ -29,15 +29,18 @@ const formatHTML = async (html) => {
 };
 
 const rootDir = path.dirname(fileURLToPath(import.meta.url));
-const globPattern = `${path.join(rootDir, '../tests/rules/**/*.e2e.html')}`;
-const files = glob.sync([globPattern]);
+const globPattern = [
+  `${path.join(rootDir, '../tests/rules/**/*.e2e.html')}`,
+  `${path.join(rootDir, '../tests/index.html')}`,
+];
+const files = glob.sync(globPattern);
 
 if (files.length === 0) {
   console.log('[build/createNavListOfAllRules.js] No files found matching the glob pattern:', globPattern);
   process.exit(0);
 }
 
-const $ = cheerio.load('<html></html>'); // Load cheerio
+const $ = cheerio.load('<html></html>');
 const nav = $('<nav aria-label="Tests" id="testsNavigation"></nav>');
 const ul = $('<ul></ul>');
 
@@ -70,19 +73,19 @@ for (const file of files) {
   const existingNav = $('#testsNavigation');
 
   if (existingNav.length > 0) {
-    existingNav.remove();
-  }
-
-  const newHeader = $('<header></header>');
-
-  newHeader.append(nav.clone());
-
-  const body = $('body');
-
-  if (body.length > 0) {
-    body.prepend(newHeader);
+    existingNav.replaceWith(nav.clone());
   } else {
-    console.log('[build/createNavListOfAllRules.js] No <body> tag found in file:', file);
+    const newHeader = $('<header></header>');
+
+    newHeader.append(nav.clone());
+
+    const body = $('body');
+
+    if (body.length > 0) {
+      body.prepend(newHeader);
+    } else {
+      console.log('[build/createNavListOfAllRules.js] No <body> tag found in file:', file);
+    }
   }
 
   const formattedHTML = await formatHTML($.html());
