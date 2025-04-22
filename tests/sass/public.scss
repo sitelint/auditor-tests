@@ -13,8 +13,9 @@ h2 {
 .tests-navigation {
   details {
     border: 1px solid #ccc;
-    padding: 10px;
+    padding: 1rem;
   }
+
   summary {
     cursor: pointer;
     font-weight: bold;
@@ -23,10 +24,10 @@ h2 {
   summary::marker {
     content: '+ ';
     font-size: 1.5em;
+    width: 1.5rem;
   }
 
   details[open] summary::marker {
     content: '- ';
-    font-size: 1.5em;
   }
 }
