@@ -1,20 +1,35 @@
-<html>
-  <head></head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Accessible SVG test</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="icon" href="/tests/assets/images/favicon.ico" sizes="any" />
+    <link rel="icon" href="/tests/assets/images/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" href="/tests/assets/css/public.css" crossorigin="anonymous" as="style" type="text/css" />
+  </head>
+
   <body>
     <header>
       <nav aria-label="Tests" id="testsNavigation" class="tests-navigation">
         <details>
           <summary>Tests</summary>
           <ul>
-            <li><a href="rules/auditor/accessibility/aria-attribute-conflict/aria-attribute-conflict.e2e.html">Page title</a></li>
-            <li><a href="rules/wcag2/1/1.1/1.1.1/F65/accessible-svg.e2e.html">accessible-svg.e2e.html</a></li>
-            <li><a href="rules/wcag22/target-size-minimum/target-size-minimum.e2e.html">target-size-minimum.e2e.html</a></li>
+            <li><a href="rules/auditor/accessibility/aria-attribute-conflict/aria-attribute-conflict.e2e.html">The aria attribute conflict test</a></li>
+            <li><a href="rules/wcag2/1/1.1/1.1.1/F65/accessible-svg.e2e.html">Accessible SVG test</a></li>
+            <li><a href="rules/wcag22/target-size-minimum/target-size-minimum.e2e.html">Target size minimum test</a></li>
             <li><a href="index.html">SiteLint Auditor tests</a></li>
           </ul>
         </details>
       </nav>
     </header>
-    <header></header>
+
+    <h1>Accessible SVG test</h1>
+
     <svg xmlns="http://www.w3.org/2000/svg" width="128" height="40">
       <path fill="#0070d1" d="M0 0h128v40H0z"></path>
       <path
