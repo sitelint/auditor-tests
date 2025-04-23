@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "clear:dev": "shx rm -rf ./client/rules",
-    "build:dev": "npm run sass:dev && node build/processRules.js",
+    "build:github": "npm run sass:dev && node build/processRules.js --baseHref=https://sitelint.github.io/auditor-tests/",
+    "build:localhost": "npm run sass:dev && node build/processRules.js --baseHref=https://localhost:3000/",
     "sass:dev": "sass tests/sass/public.scss tests/assets/css/public.css --no-source-map",
     "tests:run": "node ./tests/run.js",
     "test": "echo \"Error: no test specified\" && exit 1"

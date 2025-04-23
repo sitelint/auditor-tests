@@ -6,7 +6,15 @@ import glob from 'glob-all';
 import * as cheerio from 'cheerio';
 import prettier from 'prettier';
 
-const __dirname = fileURLToPath(import.meta.url);
+/**
+ * @param {string} argName
+ */
+function getArgumentValue(argName) {
+  const args = process.argv.slice(2);
+  const arg = args.find((arg) => arg.startsWith(`--${argName}=`));
+
+  return arg ? arg.split('=')[1] : null;
+}
 
 function fileExistsAndHasSize(filePath) {
   try {
@@ -31,12 +39,13 @@ const formatHTML = async (html) => {
   return formattedHTML;
 };
 
-const projectGitHubId = 'auditor-tests';
+const baseHref = getArgumentValue('baseHref');
 const rootDir = path.dirname(fileURLToPath(import.meta.url));
 const globPattern = [
   `${path.join(rootDir, '../tests/rules/**/*.e2e.html')}`,
   `${path.join(rootDir, '../tests/index.html')}`,
 ];
+
 const files = glob.sync(globPattern);
 
 if (files.length === 0) {
@@ -51,76 +60,85 @@ const details = nav.find('details');
 
 details.append(ul);
 
-const baseUrl = `https://sitelint.github.io/${projectGitHubId}/`;
+const baseUrl = baseHref;
 
-for (const file of files) {
-  if (fileExistsAndHasSize(file) === false) {
-    continue;
+const createMenuListWithAllTests = (files) => {
+  for (const file of files) {
+    if (fileExistsAndHasSize(file) === false) {
+      continue;
+    }
+
+    const content = fs.readFileSync(file, 'utf8');
+    const $ = cheerio.load(content);
+    const relativePath = `${pathPosix.relative(path.join(rootDir, '../tests'), file)}`;
+
+    const title = $('title').text() || path.basename(file);
+    const li = $('<li></li>');
+    const a = $(`<a href="${new URL(relativePath, baseUrl).href}">${title}</a>`);
+
+    li.append(a);
+    ul.append(li);
   }
+};
 
-  const content = fs.readFileSync(file, 'utf8');
-  const $ = cheerio.load(content);
-  const relativePath = `${pathPosix.relative(path.join(rootDir, '../tests'), file)}`;
+const adjustTestHTML = async (files) => {
+  for (const file of files) {
+    if (fileExistsAndHasSize(file) === false) {
+      continue;
+    }
 
-  const title = $('title').text() || path.basename(file);
-  const li = $('<li></li>');
-  const a = $(`<a href="${new URL(relativePath, baseUrl).href}">${title}</a>`);
+    const content = fs.readFileSync(file, 'utf8');
+    const $ = cheerio.load(content);
+    const existingNav = $('#testsNavigation');
 
-  li.append(a);
-  ul.append(li);
-}
-
-for (const file of files) {
-  if (fileExistsAndHasSize(file) === false) {
-    continue;
-  }
-
-  const content = fs.readFileSync(file, 'utf8');
-  const $ = cheerio.load(content);
-  const existingNav = $('#testsNavigation');
-
-  if (existingNav.length > 0) {
-    existingNav.replaceWith(nav.clone());
-  } else {
-    const newHeader = $('<header></header>');
-
-    newHeader.append(nav.clone());
-
-    const body = $('body');
-
-    if (body.length > 0) {
-      body.prepend(newHeader);
+    if (existingNav.length > 0) {
+      existingNav.replaceWith(nav.clone());
     } else {
-      console.log('[build/createNavListOfAllRules.js] No <body> tag found in file:', file);
+      const newHeader = $('<header></header>');
+
+      newHeader.append(nav.clone());
+
+      const body = $('body');
+
+      if (body.length > 0) {
+        body.prepend(newHeader);
+      } else {
+        console.log('[build/createNavListOfAllRules.js] No <body> tag found in file:', file);
+      }
     }
-  }
 
-  const existingAppScript = $('#appScript');
+    // Add main app.js <script>
 
-  if (existingAppScript.length > 0) {
-    existingAppScript.remove();
-  }
+    const existingAppScript = $('#appScript');
 
-  const assetPath = pathPosix.relative(path.join(rootDir, '../'), 'assets/scripts/app.js');
-  const appJs = $(`<script id="appScript" src="${new URL(assetPath, baseUrl).href}"></script>`);
-  const head = $('head');
-
-  head.append(appJs);
-
-  // Proces <link> elements
-
-  const linkElements = $('link');
-
-  linkElements.each((index, element) => {
-    const href = $(element).attr('href');
-
-    if (href) {
-      const newHref = new URL(href, baseUrl).href;
-      $(element).attr('href', newHref);
+    if (existingAppScript.length > 0) {
+      existingAppScript.remove();
     }
-  });
 
-  const formattedHTML = await formatHTML($.html());
+    const assetPath = pathPosix.relative(path.join(rootDir, '../'), 'assets/scripts/app.js');
+    const appJs = $(`<script id="appScript" src="${new URL(assetPath, baseUrl).href}"></script>`);
+    const head = $('head');
 
-  fs.writeFileSync(file, formattedHTML);
-}
+    head.append(appJs);
+
+    // Process <link> elements
+
+    const linkElements = $('link');
+
+    linkElements.each((index, element) => {
+      const href = $(element).attr('href');
+
+      if (href) {
+        const newHref = new URL(href, baseUrl).href;
+        $(element).attr('href', newHref);
+      }
+    });
+
+    const formattedHTML = await formatHTML($.html());
+
+    fs.writeFileSync(file, formattedHTML);
+  }
+};
+
+createMenuListWithAllTests(files);
+adjustTestHTML(files);
