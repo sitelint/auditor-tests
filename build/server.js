@@ -95,8 +95,6 @@ const createServer = async () => {
     const parsedUrl = new URL(req.url, `https://localhost:${serverAddress.port}`);
     const filePath = path.join(__dirname, '../../tests', parsedUrl.pathname.replace(/\/$/, ''));
 
-    console.log(__dirname, '../tests/', parsedUrl.pathname.replace(/\/$/, ''), filePath);
-
     if (fs.existsSync(filePath)) {
       if (fs.lstatSync(filePath).isDirectory()) {
         const indexFilePath = path.join(filePath, 'index.html');
