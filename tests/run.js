@@ -89,7 +89,7 @@ const createServer = async () => {
   const options = {
     key: fs.readFileSync('key.key'),
     cert: fs.readFileSync('cert.crt'),
-    allowHTTP1: true,
+    allowHTTP1: true
   };
 
   const server = http2.createSecureServer(options, (req, res) => {

@@ -6,6 +6,8 @@ import glob from 'glob-all';
 import * as cheerio from 'cheerio';
 import prettier from 'prettier';
 
+const __dirname = fileURLToPath(import.meta.url);
+
 function fileExistsAndHasSize(filePath) {
   try {
     const stats = fs.statSync(filePath);
@@ -56,7 +58,8 @@ for (const file of files) {
 
   const content = fs.readFileSync(file, 'utf8');
   const $ = cheerio.load(content);
-  const relativePath = `/${projectGitHubId}/${pathPosix.relative(path.join(rootDir, '../'), file)}`;
+  // const relativePath = `/${projectGitHubId}/${pathPosix.relative(path.join(rootDir, '../'), file)}`;
+  const relativePath = pathPosix.relative(path.join(rootDir, '../'), file);
 
   const title = $('title').text() || path.basename(file);
   const li = $('<li></li>');
@@ -93,12 +96,15 @@ for (const file of files) {
 
   const existingAppScript = $('#appScript');
 
-  if (existingAppScript.length === 0) {
-    const appJs = $(`<script id="appScript" src="/${projectGitHubId}/${pathPosix.relative(path.join(rootDir, '../'), 'tests/assets/scripts/app.js')}"></script>`);
-    const head = $('head');
-
-    head.append(appJs);
+  if (existingAppScript.length > 0) {
+    existingAppScript.remove();
   }
+
+  // const appJs = $(`<script id="appScript" src="/${projectGitHubId}/${pathPosix.relative(path.join(rootDir, '../tests'), 'assets/scripts/app.js')}"></script>`);
+  const appJs = $(`<script id="appScript" src="${pathPosix.relative(path.join(rootDir, '../'), 'tests/assets/scripts/app.js')}"></script>`);
+  const head = $('head');
+
+  head.append(appJs);
 
   const formattedHTML = await formatHTML($.html());
 
