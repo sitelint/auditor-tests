@@ -72,7 +72,12 @@ const createMenuListWithAllTests = (files) => {
     const $ = cheerio.load(content);
     const relativePath = `${pathPosix.relative(path.join(rootDir, '../tests'), file)}`;
 
-    const title = $('title').text() || path.basename(file);
+    const testDetailsElement = $('script#testDetails');
+    const testDetails = JSON.parse(testDetailsElement.html());
+
+    const ruleTitle = testDetails.ruleTitle || $('title').text() || path.basename(file);
+    const title = `${testDetails.standard} - ${testDetails.ruleId} - ${ruleTitle} - ${testDetails.standardVersion}`;
+
     const li = $('<li></li>');
     const a = $(`<a href="${new URL(relativePath, baseUrl).href}">${title}</a>`);
 

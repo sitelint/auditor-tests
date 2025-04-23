@@ -11,6 +11,15 @@
     <link rel="apple-touch-icon" sizes="180x180" href="https://sitelint.github.io/auditor-tests/assets/images/apple-touch-icon.png" />
     <link rel="stylesheet" href="https://sitelint.github.io/auditor-tests/assets/css/public.css" crossorigin="anonymous" as="style" type="text/css" />
 
+    <script type="application/ld+json" id="testDetails">
+      {
+        "ruleId": "example-rule-id",
+        "ruleTitle": "Example rule title",
+        "standard": "Example standard",
+        "standardVersion": "2.0"
+      }
+    </script>
+
     <script id="appScript" src="https://sitelint.github.io/auditor-tests/assets/scripts/app.js"></script>
   </head>
 
@@ -22,14 +31,20 @@
           <ul>
             <li>
               <a href="https://sitelint.github.io/auditor-tests/rules/auditor/accessibility/aria-attribute-conflict/aria-attribute-conflict.e2e.html"
-                >The aria attribute conflict test</a
+                >SiteLint - aria-attribute-conflict - Both native HTML attributes and ARIA attributes should not be used together. - 1.0</a
               >
             </li>
-            <li><a href="https://sitelint.github.io/auditor-tests/rules/wcag2/1/1.1/1.1.1/F65/accessible-svg.e2e.html">Accessible SVG test</a></li>
             <li>
-              <a href="https://sitelint.github.io/auditor-tests/rules/wcag22/target-size-minimum/target-size-minimum.e2e.html">Target size minimum test</a>
+              <a href="https://sitelint.github.io/auditor-tests/rules/wcag2/1/1.1/1.1.1/F65/accessible-svg.e2e.html"
+                >Example standard - example-rule-id - Example rule title - 2.0</a
+              >
             </li>
-            <li><a href="https://sitelint.github.io/auditor-tests/index.html">SiteLint Auditor tests</a></li>
+            <li>
+              <a href="https://sitelint.github.io/auditor-tests/rules/wcag22/target-size-minimum/target-size-minimum.e2e.html"
+                >Example standard - example-rule-id - Example rule title - 2.0</a
+              >
+            </li>
+            <li><a href="https://sitelint.github.io/auditor-tests/index.html">Example standard - example-rule-id - Example rule title - 2.0</a></li>
           </ul>
         </details>
       </nav>
