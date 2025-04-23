@@ -58,7 +58,7 @@ for (const file of files) {
 
   const content = fs.readFileSync(file, 'utf8');
   const $ = cheerio.load(content);
-  const relativePath = `/${pathPosix.relative(path.join(rootDir, '../tests'), file)}`;
+  const relativePath = `${pathPosix.relative(path.join(rootDir, '../tests'), file)}`;
 
   const title = $('title').text() || path.basename(file);
   const li = $('<li></li>');
