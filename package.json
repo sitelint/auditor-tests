@@ -1,20 +1,21 @@
 {
+  "author": "sitelint",
+  "description": "SiteLint Auditor Testing Framework for creating and testing cases for each rules.",
+  "license": "MPL-2.0",
+  "main": "tests/run.js",
   "name": "sitelint-auditor-testing-framework",
   "version": "1.0.0",
-  "description": "SiteLint Auditor Testing Framework for creating and testing cases for each rules.",
-  "main": "tests/run.js",
   "type": "module",
   "scripts": {
     "clear:dev": "shx rm -rf ./client/rules",
     "build:github": "npm run sass:dev && node build/processRules.js --baseHref=https://sitelint.github.io/auditor-tests/",
     "build:localhost": "npm run sass:dev && node build/processRules.js --baseHref=https://localhost:3000/",
     "deploy:github": "node build/deployToGithub.js",
+    "server:localhost": "node build/server.js",
     "sass:dev": "sass tests/sass/public.scss tests/assets/css/public.css --no-source-map",
     "tests:run": "node ./tests/run.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "sitelint",
-  "license": "MPL-2.0",
   "dependencies": {
     "@types/express": "5.0.1",
     "express": "5.1.0"

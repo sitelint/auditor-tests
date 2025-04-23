@@ -7,6 +7,15 @@ import { URL, fileURLToPath } from 'node:url';
 const __dirname = fileURLToPath(import.meta.url);
 let server;
 
+const fileExistsAndHasSize = (filePath) => {
+  try {
+    const stats = fs.statSync(filePath);
+    return stats.size > 0;
+  } catch (err) {
+    return false;
+  }
+};
+
 const createSelfSignedCertificate = () => {
   return new Promise((resolve, reject) => {
     if (fs.existsSync('cert.crt') && fs.existsSync('key.key')) {

@@ -16,14 +16,14 @@ function getArgumentValue(argName) {
   return arg ? arg.split('=')[1] : null;
 }
 
-function fileExistsAndHasSize(filePath) {
+const fileExistsAndHasSize = (filePath) => {
   try {
     const stats = fs.statSync(filePath);
     return stats.size > 0;
   } catch (err) {
     return false;
   }
-}
+};
 
 const formatHTML = async (html) => {
   let formattedHTML = html;
