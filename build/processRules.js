@@ -51,6 +51,8 @@ const details = nav.find('details');
 
 details.append(ul);
 
+const baseUrl = `https://sitelint.github.io/${projectGitHubId}/`;
+
 for (const file of files) {
   if (fileExistsAndHasSize(file) === false) {
     continue;
@@ -62,7 +64,7 @@ for (const file of files) {
 
   const title = $('title').text() || path.basename(file);
   const li = $('<li></li>');
-  const a = $(`<a href="${relativePath}">${title}</a>`);
+  const a = $(`<a href="${new URL(relativePath, baseUrl).href}">${title}</a>`);
 
   li.append(a);
   ul.append(li);
@@ -99,11 +101,24 @@ for (const file of files) {
     existingAppScript.remove();
   }
 
-  // const appJs = $(`<script id="appScript" src="/${projectGitHubId}/${pathPosix.relative(path.join(rootDir, '../tests'), 'assets/scripts/app.js')}"></script>`);
-  const appJs = $(`<script id="appScript" src="${pathPosix.relative(path.join(rootDir, '../'), 'assets/scripts/app.js')}"></script>`);
+  const assetPath = pathPosix.relative(path.join(rootDir, '../'), 'assets/scripts/app.js');
+  const appJs = $(`<script id="appScript" src="${new URL(assetPath, baseUrl).href}"></script>`);
   const head = $('head');
 
   head.append(appJs);
+
+  // Proces <link> elements
+
+  const linkElements = $('link');
+
+  linkElements.each((index, element) => {
+    const href = $(element).attr('href');
+
+    if (href) {
+      const newHref = new URL(href, baseUrl).href;
+      $(element).attr('href', newHref);
+    }
+  });
 
   const formattedHTML = await formatHTML($.html());
 
