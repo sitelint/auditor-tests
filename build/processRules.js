@@ -59,7 +59,7 @@ for (const file of files) {
   const content = fs.readFileSync(file, 'utf8');
   const $ = cheerio.load(content);
   // const relativePath = `/${projectGitHubId}/${pathPosix.relative(path.join(rootDir, '../'), file)}`;
-  const relativePath = pathPosix.relative(path.join(rootDir, '../'), file);
+  const relativePath = pathPosix.relative(path.join(rootDir, '../tests'), file);
 
   const title = $('title').text() || path.basename(file);
   const li = $('<li></li>');
@@ -101,7 +101,7 @@ for (const file of files) {
   }
 
   // const appJs = $(`<script id="appScript" src="/${projectGitHubId}/${pathPosix.relative(path.join(rootDir, '../tests'), 'assets/scripts/app.js')}"></script>`);
-  const appJs = $(`<script id="appScript" src="${pathPosix.relative(path.join(rootDir, '../'), 'tests/assets/scripts/app.js')}"></script>`);
+  const appJs = $(`<script id="appScript" src="${pathPosix.relative(path.join(rootDir, '../'), 'assets/scripts/app.js')}"></script>`);
   const head = $('head');
 
   head.append(appJs);
