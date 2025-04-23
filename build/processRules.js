@@ -39,7 +39,8 @@ const formatHTML = async (html) => {
   return formattedHTML;
 };
 
-const baseHref = getArgumentValue('baseHref');
+const baseHrefFrom = getArgumentValue('baseHrefFrom');
+const baseHrefTo = getArgumentValue('baseHrefTo');
 const rootDir = path.dirname(fileURLToPath(import.meta.url));
 const globPattern = [
   `${path.join(rootDir, '../tests/rules/**/*.e2e.html')}`,
@@ -60,8 +61,6 @@ const details = nav.find('details');
 
 details.append(ul);
 
-const baseUrl = baseHref;
-
 const createMenuListWithAllTests = (files) => {
   for (const file of files) {
     if (fileExistsAndHasSize(file) === false) {
@@ -79,7 +78,7 @@ const createMenuListWithAllTests = (files) => {
     const title = `${testDetails.standard} - ${testDetails.ruleId} - ${ruleTitle} - ${testDetails.standardVersion}`;
 
     const li = $('<li></li>');
-    const a = $(`<a href="${new URL(relativePath, baseUrl).href}">${title}</a>`);
+    const a = $(`<a href="${new URL(relativePath, baseHrefTo).href}">${title}</a>`);
 
     li.append(a);
     ul.append(li);
@@ -121,7 +120,7 @@ const adjustTestHTML = async (files) => {
     }
 
     const assetPath = pathPosix.relative(path.join(rootDir, '../'), 'assets/scripts/app.js');
-    const appJs = $(`<script id="appScript" src="${new URL(assetPath, baseUrl).href}"></script>`);
+    const appJs = $(`<script id="appScript" src="${new URL(assetPath, baseHrefTo).href}"></script>`);
     const head = $('head');
 
     head.append(appJs);
@@ -134,7 +133,7 @@ const adjustTestHTML = async (files) => {
       const href = $(element).attr('href');
 
       if (href) {
-        const newHref = new URL(href, baseUrl).href;
+        const newHref = href.replace(baseHrefFrom, baseHrefTo);
         $(element).attr('href', newHref);
       }
     });

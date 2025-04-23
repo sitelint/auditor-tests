@@ -8,8 +8,8 @@
   "type": "module",
   "scripts": {
     "clear:dev": "shx rm -rf ./client/rules",
-    "build:github": "npm run sass:dev && node build/processRules.js --baseHref=https://sitelint.github.io/auditor-tests/",
-    "build:localhost": "npm run sass:dev && node build/processRules.js --baseHref=https://localhost:3000/",
+    "build:github": "npm run sass:dev && node build/processRules.js --baseHrefFrom=https://localhost:3000/ --baseHrefTo=https://sitelint.github.io/auditor-tests/",
+    "build:localhost": "npm run sass:dev && node build/processRules.js --baseHrefFrom=https://sitelint.github.io/auditor-tests/ --baseHrefTo=https://localhost:3000/",
     "deploy:github": "node build/deployToGithub.js",
     "server:localhost": "node build/server.js",
     "sass:dev": "sass tests/sass/public.scss tests/assets/css/public.css --no-source-map",
