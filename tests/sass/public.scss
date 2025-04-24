@@ -1,5 +1,10 @@
+@import "helpers/helpers";
+@import "variables";
+@import "external/bootstrap/bootstrap";
+
 body {
   background: #f6f9fe;
+  color: $color-1;
   font-family: 'Inter', 'SF Pro Text', 'Helvetica Neue', 'Helvetica', 'Segoe UI', 'Arial', sans-serif;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
@@ -10,8 +15,14 @@ h2 {
   font-family: 'Inter', 'SF Pro Text', 'Helvetica Neue', 'Helvetica', 'Segoe UI', 'Arial', sans-serif;
 }
 
-.tests-navigation {
-  max-width: 50vw;
+.tests-search-box {
+  background: #fff;
+  left: auto;
+  margin: 0;
+  max-width: 40vw;
+  position: fixed;
+  right: 1rem;
+  top: 1rem;
 
   details {
     border: 1px solid #ccc;
@@ -29,34 +40,5 @@ h2 {
     font-weight: bold;
   }
 
-  ol {
-    list-style: none;
-    margin: 0;
-    padding: 0;
 
-    li {
-      &:not(:last-of-type) {
-        margin-bottom: 0.25rem;
-      }
-
-      a {
-        display: block;
-        padding: 0.25rem 1rem;
-        text-decoration-line: none;
-        text-decoration-skip-ink: auto;
-
-        &:link,
-        &:visited {
-          small {
-            display: block;
-            text-decoration: none;
-          }
-
-          span {
-            text-decoration: underline;
-          }
-        }
-      }
-    }
-  }
 }

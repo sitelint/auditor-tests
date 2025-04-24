@@ -1,0 +1,89 @@
+@use "sass:map";
+
+$spacer: 16px !default;
+$spacers: () !default;
+
+$spacers: map.merge(
+  (
+    0: 0,
+    1: (
+      $spacer * 0.25,
+    ),
+    // 4px
+    2:
+      (
+        $spacer * 0.5,
+      ),
+    // 8px
+    3: $spacer,
+    // 16px
+    4:
+      (
+        $spacer * 1.5,
+      ),
+    // 24px
+    5:
+      (
+        $spacer * 3,
+      ),
+    // 48px
+    6:
+      (
+        $spacer * 4,
+      ),
+    // 64px
+    7:
+      (
+        $spacer * 5,
+      ),
+    // 80px
+    8:
+      (
+        $spacer * 6.25,
+      ),
+    // 100px
+    9:
+      (
+        $spacer * 7.5,
+      ),
+    // 120px
+    10:
+      (
+        $spacer * 9.375,
+      )
+      // 150px,
+  ),
+  $spacers
+);
+
+$body-font-size: 16px !default;
+$body-line-height: remToPx(1.375rem);
+$border-radius-sm: remToPx(0.2rem);
+$border-radius: remToPx(0.2rem);
+$border-style: solid;
+$border-width: 1px !default;
+// $btn-box-shadow: inset 0 6px 12px rgba(255 255 255 / 12%), inset 0 1px 1px rgba(255 255 255 / 20%);
+$btn-font-size: 16px !default;
+$btn-font-size-sm: 14px !default;
+$btn-font-size-lg: 30px !default;
+$focus-ring-width: remToPx(0.25rem) !default;
+$font-family-base: 16px !default;
+$font-family-monospace: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+$font-size-base: 16px !default;
+$form-select-font-size: 12px !default;
+$input-btn-font-size: 16px !default;
+$input-btn-font-size-sm: 14px !default;
+$input-font-size: 16px !default;
+$line-height-base: 1.5 !default;
+$enable-negative-margins: true;
+$nav-link-padding-y: 16px !default;
+
+$headings-margin-bottom: $margin * 2 !default;
+
+// Bootstrap 5.0.0
+$enable-shadows: true;
+
+$body-color: $color-1;
+$code-color: darken($code-color, 10%); // To pass color contrast
+$nav-tabs-border-radius: $border-radius-default;
+$line-height-base: 1.75;

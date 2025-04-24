@@ -24,6 +24,56 @@
   </head>
 
   <body>
+    <dialog open="" id="testsListDialog" class="tests-search-box">
+      <search>
+        <form method="dialog">
+          <table class="table caption-top">
+            <caption>
+              Test Suites
+            </caption>
+            <thead>
+              <tr>
+                <th>Standard</th>
+                <th>Version</th>
+                <th>Title</th>
+                <th>Rule ID</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+            <tbody>
+              <tr>
+                <td>SiteLint</td>
+                <td>1.0</td>
+                <td>
+                  <a href="https://sitelint.github.io/auditor-tests/rules/auditor/accessibility/aria-attribute-conflict/aria-attribute-conflict.e2e.html"
+                    >Both native HTML attributes and ARIA attributes should not be used together.</a
+                  >
+                </td>
+                <td>aria-attribute-conflict</td>
+              </tr>
+              <tr>
+                <td>Example standard</td>
+                <td>2.0</td>
+                <td><a href="https://sitelint.github.io/auditor-tests/rules/wcag2/1/1.1/1.1.1/F65/accessible-svg.e2e.html">Example rule title</a></td>
+                <td>example-rule-id</td>
+              </tr>
+              <tr>
+                <td>Example standard</td>
+                <td>2.0</td>
+                <td><a href="https://sitelint.github.io/auditor-tests/rules/wcag22/target-size-minimum/target-size-minimum.e2e.html">Example rule title</a></td>
+                <td>example-rule-id</td>
+              </tr>
+              <tr>
+                <td>Example standard</td>
+                <td>2.0</td>
+                <td><a href="https://sitelint.github.io/auditor-tests/index.html">Example rule title</a></td>
+                <td>example-rule-id</td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      </search>
+    </dialog>
     <h1>SiteLint Auditor rules tests</h1>
   </body>
 </html>

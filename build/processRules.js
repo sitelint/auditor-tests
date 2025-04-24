@@ -55,11 +55,29 @@ if (files.length === 0) {
 }
 
 const $ = cheerio.load('<html></html>');
-const nav = $('<nav aria-label="Tests" id="testsNavigation" class="tests-navigation"><details><summary>Tests</summary></details></nav>');
-const ol = $('<ol></ol>');
-const details = nav.find('details');
+const searchBox = $(`<dialog open id="testsListDialog" class="tests-search-box">
+  <search>
+    <form method="dialog">
+      <table class="table caption-top">
+        <caption>Test Suites</caption>
+        <thead>
+          <tr>
+            <th>Standard</th>
+            <th>Version</th>
+            <th>Title</th>
+            <th>Rule ID</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </form>
+  </search>
+</dialog>`);
 
-details.append(ol);
+const tbody = $('<tbody></tbody>');
+const table = searchBox.find('table');
+
+table.append(tbody);
 
 const createMenuListWithAllTests = (files) => {
   for (const file of files) {
@@ -75,13 +93,16 @@ const createMenuListWithAllTests = (files) => {
     const testDetails = JSON.parse(testDetailsElement.html());
 
     const ruleTitle = testDetails.ruleTitle || $('title').text() || path.basename(file);
-    const title = `${testDetails.standard} - ${ruleTitle} - ${testDetails.standardVersion}`;
+    const tr = $('<tr></tr>');
 
-    const li = $('<li></li>');
-    const a = $(`<a href="${new URL(relativePath, baseHrefTo).href}"><span>${title}</span> <small><code>${testDetails.ruleId}</code></small></a>`);
+    tr.append(`
+      <td>${testDetails.standard}</td>
+      <td>${testDetails.standardVersion}</td>
+      <td><a href="${new URL(relativePath, baseHrefTo).href}">${ruleTitle}</a></td>
+      <td>${testDetails.ruleId}</td>
+    `);
 
-    li.append(a);
-    ol.append(li);
+    tbody.append(tr);
   }
 };
 
@@ -93,19 +114,15 @@ const adjustTestHTML = async (files) => {
 
     const content = fs.readFileSync(file, 'utf8');
     const $ = cheerio.load(content);
-    const existingNav = $('#testsNavigation');
+    const existingSearchBox = $('#testsListDialog');
 
-    if (existingNav.length > 0) {
-      existingNav.replaceWith(nav.clone());
+    if (existingSearchBox.length > 0) {
+      existingSearchBox.replaceWith(searchBox.clone());
     } else {
-      const newHeader = $('<header></header>');
-
-      newHeader.append(nav.clone());
-
       const body = $('body');
 
       if (body.length > 0) {
-        body.prepend(newHeader);
+        body.prepend(searchBox);
       } else {
         console.log('[build/createNavListOfAllRules.js] No <body> tag found in file:', file);
       }
