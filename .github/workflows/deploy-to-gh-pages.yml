@@ -41,6 +41,7 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
       - name: Send notification to Slack
         uses: slack/api@v1
         if: success()
