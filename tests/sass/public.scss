@@ -11,13 +11,52 @@ h2 {
 }
 
 .tests-navigation {
+  max-width: 50vw;
+
   details {
     border: 1px solid #ccc;
     padding: 1rem;
+
+    &[open] {
+      summary {
+        margin-bottom: 1rem;
+      }
+    }
   }
 
   summary {
     cursor: pointer;
     font-weight: bold;
+  }
+
+  ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      &:not(:last-of-type) {
+        margin-bottom: 0.25rem;
+      }
+
+      a {
+        display: block;
+        padding: 0.25rem 1rem;
+        text-decoration-line: none;
+        text-decoration-skip-ink: auto;
+
+        &:link,
+        &:visited {
+          small {
+            display: block;
+            text-decoration: none;
+          }
+
+          span {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
   }
 }

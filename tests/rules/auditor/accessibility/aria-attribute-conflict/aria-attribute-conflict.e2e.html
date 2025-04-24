@@ -28,27 +28,62 @@
       <nav aria-label="Tests" id="testsNavigation" class="tests-navigation">
         <details>
           <summary>Tests</summary>
-          <ul>
+          <ol>
             <li>
               <a href="https://sitelint.github.io/auditor-tests/rules/auditor/accessibility/aria-attribute-conflict/aria-attribute-conflict.e2e.html"
-                >SiteLint - aria-attribute-conflict - Both native HTML attributes and ARIA attributes should not be used together. - 1.0</a
+                ><span>SiteLint - Both native HTML attributes and ARIA attributes should not be used together. - 1.0</span>
+                <small><code>aria-attribute-conflict</code></small></a
               >
             </li>
             <li>
               <a href="https://sitelint.github.io/auditor-tests/rules/wcag2/1/1.1/1.1.1/F65/accessible-svg.e2e.html"
-                >Example standard - example-rule-id - Example rule title - 2.0</a
+                ><span>Example standard - Example rule title - 2.0</span> <small><code>example-rule-id</code></small></a
               >
             </li>
             <li>
               <a href="https://sitelint.github.io/auditor-tests/rules/wcag22/target-size-minimum/target-size-minimum.e2e.html"
-                >Example standard - example-rule-id - Example rule title - 2.0</a
+                ><span>Example standard - Example rule title - 2.0</span> <small><code>example-rule-id</code></small></a
               >
             </li>
-            <li><a href="https://sitelint.github.io/auditor-tests/index.html">Example standard - example-rule-id - Example rule title - 2.0</a></li>
-          </ul>
+            <li>
+              <a href="https://sitelint.github.io/auditor-tests/index.html"
+                ><span>Example standard - Example rule title - 2.0</span> <small><code>example-rule-id</code></small></a
+              >
+            </li>
+          </ol>
         </details>
       </nav>
     </header>
-    <h1>Page H1 heading</h1>
+    <h1>Both native HTML attributes and ARIA attributes should not be used together.</h1>
+
+    <details>
+      <summary>Test details</summary>
+
+      <table>
+        <caption>
+          All details related to the test case
+        </caption>
+        <thead>
+          <tr>
+            <th>Audit type</th>
+            <th>Standard</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Accessibility</td>
+            <td>WCAG 2.0</td>
+          </tr>
+        </tbody>
+      </table>
+    </details>
+
+    <h2>Test Suites</h2>
+
+    <div class="test-suite">
+      <h3>Should fail because of defined redundant <code>aria-valuemax</code> together with the attribute <code>max</code></h3>
+
+      <progress value="50" max="100" aria-valuemax="100">50%</progress>
+    </div>
   </body>
 </html>

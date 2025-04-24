@@ -56,10 +56,10 @@ if (files.length === 0) {
 
 const $ = cheerio.load('<html></html>');
 const nav = $('<nav aria-label="Tests" id="testsNavigation" class="tests-navigation"><details><summary>Tests</summary></details></nav>');
-const ul = $('<ul></ul>');
+const ol = $('<ol></ol>');
 const details = nav.find('details');
 
-details.append(ul);
+details.append(ol);
 
 const createMenuListWithAllTests = (files) => {
   for (const file of files) {
@@ -75,13 +75,13 @@ const createMenuListWithAllTests = (files) => {
     const testDetails = JSON.parse(testDetailsElement.html());
 
     const ruleTitle = testDetails.ruleTitle || $('title').text() || path.basename(file);
-    const title = `${testDetails.standard} - ${testDetails.ruleId} - ${ruleTitle} - ${testDetails.standardVersion}`;
+    const title = `${testDetails.standard} - ${ruleTitle} - ${testDetails.standardVersion}`;
 
     const li = $('<li></li>');
-    const a = $(`<a href="${new URL(relativePath, baseHrefTo).href}">${title}</a>`);
+    const a = $(`<a href="${new URL(relativePath, baseHrefTo).href}"><span>${title}</span> <small><code>${testDetails.ruleId}</code></small></a>`);
 
     li.append(a);
-    ul.append(li);
+    ol.append(li);
   }
 };
 

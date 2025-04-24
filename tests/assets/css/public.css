@@ -10,11 +10,38 @@ h2 {
   font-family: "Inter", "SF Pro Text", "Helvetica Neue", "Helvetica", "Segoe UI", "Arial", sans-serif;
 }
 
+.tests-navigation {
+  max-width: 50vw;
+}
 .tests-navigation details {
   border: 1px solid #ccc;
   padding: 1rem;
 }
+.tests-navigation details[open] summary {
+  margin-bottom: 1rem;
+}
 .tests-navigation summary {
   cursor: pointer;
   font-weight: bold;
+}
+.tests-navigation ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.tests-navigation ol li:not(:last-of-type) {
+  margin-bottom: 0.25rem;
+}
+.tests-navigation ol li a {
+  display: block;
+  padding: 0.25rem 1rem;
+  text-decoration-line: none;
+  text-decoration-skip-ink: auto;
+}
+.tests-navigation ol li a:link small, .tests-navigation ol li a:visited small {
+  display: block;
+  text-decoration: none;
+}
+.tests-navigation ol li a:link span, .tests-navigation ol li a:visited span {
+  text-decoration: underline;
 }
