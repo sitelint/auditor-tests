@@ -41,11 +41,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
-      - name: Send notification to Slack
-        uses: slack/send@v1
-        if: success()
-        with:
-          slack-token: ${{ secrets.SLACK_TOKEN }}
-          channel: 'deployment-messages'
-          text: 'Deployment to GitHub Pages completed successfully! :white_check_mark: <${{ steps.deployment.outputs.page_url }}|View deployment>'
