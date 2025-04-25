@@ -1,6 +1,7 @@
-@import "helpers/helpers";
-@import "variables";
-@import "external/bootstrap/bootstrap";
+@import 'helpers/helpers';
+@import 'variables';
+@import 'external/bootstrap/bootstrap';
+@import 'common/common';
 
 body {
   background: #f6f9fe;
@@ -19,26 +20,21 @@ h2 {
   background: #fff;
   left: auto;
   margin: 0;
-  max-width: 40vw;
+  max-height: calc(100vh - #{$padding * 2});
+  width: 40vw;
+  overflow-y: scroll;
   position: fixed;
   right: 1rem;
   top: 1rem;
+  z-index: 2147483600; // Max: 2147483647
 
-  details {
-    border: 1px solid #ccc;
-    padding: 1rem;
+  search {
+    position: relative;
 
-    &[open] {
-      summary {
-        margin-bottom: 1rem;
-      }
+    .btn-close-dialog {
+      position: absolute;
+      right: -1rem;
+      top: -1rem;
     }
   }
-
-  summary {
-    cursor: pointer;
-    font-weight: bold;
-  }
-
-
 }

@@ -1,0 +1,46 @@
+@use 'sass:color';
+
+.btn {
+  &.btn-icon {
+    align-items: center;
+    border-radius: 50%;
+    box-shadow: none;
+    display: inline-flex;
+    height: 32px;
+    padding: 6px;
+    width: 32px;
+
+    @media (prefers-color-scheme: light) {
+      color: var(--bs-btn-color);
+      background-color: var(--bs-btn-bg);
+
+      &:focus {
+        box-shadow: 0 0 8px var(--bs-dark);
+      }
+
+      &:hover {
+        color: var(--bs-btn-hover-color);
+        background-color: var(--bs-btn-hover-bg);
+      }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      color: var(--bs-btn-color);
+      background-color: var(--bs-btn-bg);
+
+      &:focus {
+        box-shadow: 0 0 8px var(--bs-dark);
+      }
+
+      &:hover {
+        color: var(--bs-btn-hover-color);
+        background-color: var(--bs-btn-hover-bg);
+      }
+    }
+
+    svg {
+      height: remToPx(1.25rem);
+      width: remToPx(1.25rem);
+    }
+  }
+}

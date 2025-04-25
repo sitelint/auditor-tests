@@ -57,9 +57,19 @@ if (files.length === 0) {
 const $ = cheerio.load('<html></html>');
 const searchBox = $(`<dialog open id="testsListDialog" class="tests-search-box">
   <search>
+    <div class="row mb-3">
+
+      <div class="col-md-12">
+        <div class="d-flex align-items-center">
+          <label for="searchTestSuites" class="me-2">Search</label>
+          <input type="search" id="searchTestSuites" value="" class="form-control flex-grow-1 me-5">
+        </div>
+      </div>
+
+    </div>
     <form method="dialog">
       <table class="table caption-top">
-        <caption>Test Suites</caption>
+        <caption class="visually-hidden">Test Suites</caption>
         <thead>
           <tr>
             <th>Standard</th>
@@ -70,8 +80,22 @@ const searchBox = $(`<dialog open id="testsListDialog" class="tests-search-box">
         </thead>
         <tbody></tbody>
       </table>
+
+      <div class="row">
+        <div class="col-md-12 d-flex justify-content-end">
+          <button type="submit" class="btn btn-icon btn-close-dialog" data-action="closeDialog">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true" focusable="false" style="border-radius: 3px;">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"></path>
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"></path>
+            </svg>
+            <span class="visually-hidden">Close Test Suites dialog</span>
+          </button>
+        </div>
+      </div>
+
     </form>
   </search>
+
 </dialog>`);
 
 const tbody = $('<tbody></tbody>');
@@ -99,7 +123,7 @@ const createMenuListWithAllTests = (files) => {
       <td>${testDetails.standard}</td>
       <td>${testDetails.standardVersion}</td>
       <td><a href="${new URL(relativePath, baseHrefTo).href}">${ruleTitle}</a></td>
-      <td>${testDetails.ruleId}</td>
+      <td><code>${testDetails.ruleId}</code></td>
     `);
 
     tbody.append(tr);
