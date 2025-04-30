@@ -16,7 +16,9 @@
         "ruleId": "example-rule-id",
         "ruleTitle": "Example rule title",
         "standard": "Example standard",
-        "standardVersion": "2.0"
+        "standardSuccessCriteria": "Not defined",
+        "standardVersion": "2.2",
+        "standardLevel": "AA"
       }
     </script>
 
@@ -41,41 +43,75 @@
             </caption>
             <thead>
               <tr>
-                <th>Standard</th>
-                <th>Version</th>
                 <th>Title</th>
                 <th>Rule ID</th>
+                <th>Standard</th>
+                <th>Version</th>
+                <th>Level</th>
+                <th>Success Criteria</th>
               </tr>
             </thead>
             <tbody></tbody>
             <tbody>
               <tr>
-                <td>SiteLint</td>
-                <td>1.0</td>
                 <td>
                   <a href="https://sitelint.github.io/auditor-tests/rules/auditor/accessibility/aria-attribute-conflict/aria-attribute-conflict.e2e.html"
                     >Both native HTML attributes and ARIA attributes should not be used together.</a
                   >
                 </td>
                 <td><code>aria-attribute-conflict</code></td>
+                <td>SiteLint</td>
+                <td>1.0</td>
+                <td>AA</td>
+                <td>Not defined</td>
               </tr>
               <tr>
-                <td>Example standard</td>
-                <td>2.0</td>
                 <td><a href="https://sitelint.github.io/auditor-tests/rules/wcag2/1/1.1/1.1.1/F65/accessible-svg.e2e.html">Example rule title</a></td>
                 <td><code>example-rule-id</code></td>
-              </tr>
-              <tr>
                 <td>Example standard</td>
                 <td>2.0</td>
+                <td>AA</td>
+                <td>Not defined</td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="https://sitelint.github.io/auditor-tests/rules/wcag21/1/1.3/1.3.5/autocomplete-attribute-usage.e2e.html"
+                    >Add autocomplete attribute to form controls to help users fill out forms more efficiently.</a
+                  >
+                </td>
+                <td><code>autocomplete-attribute-usage</code></td>
+                <td>SiteLint</td>
+                <td>1.0</td>
+                <td>N/A</td>
+                <td>N/A</td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="https://sitelint.github.io/auditor-tests/rules/wcag21/1/1.3/1.3.5/identify-input-purpose.e2e.html"
+                    >Invalid definition of input purpose.</a
+                  >
+                </td>
+                <td><code>identify-input-purpose</code></td>
+                <td>WCAG</td>
+                <td>2.1</td>
+                <td>AA</td>
+                <td>1.3.5</td>
+              </tr>
+              <tr>
                 <td><a href="https://sitelint.github.io/auditor-tests/rules/wcag22/target-size-minimum/target-size-minimum.e2e.html">Example rule title</a></td>
                 <td><code>example-rule-id</code></td>
+                <td>Example standard</td>
+                <td>2.2</td>
+                <td>AA</td>
+                <td>Not defined</td>
               </tr>
               <tr>
-                <td>Example standard</td>
-                <td>2.0</td>
                 <td><a href="https://sitelint.github.io/auditor-tests/index.html">Example rule title</a></td>
                 <td><code>example-rule-id</code></td>
+                <td>Example standard</td>
+                <td>2.0</td>
+                <td>AA</td>
+                <td>Not defined</td>
               </tr>
             </tbody>
           </table>

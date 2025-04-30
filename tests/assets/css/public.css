@@ -11983,6 +11983,12 @@ h2,
 .tests-search-box search {
   position: relative;
 }
+.tests-search-box search table tbody tr:focus-within td, .tests-search-box search table tbody tr:hover td {
+  background-color: #f6f6f6;
+}
+.tests-search-box search table tbody tr td:nth-child(2), .tests-search-box search table tbody tr td:nth-child(3) {
+  text-align: center;
+}
 .tests-search-box search .btn-close-dialog {
   position: absolute;
   right: -1rem;

@@ -72,10 +72,12 @@ const searchBox = $(`<dialog open id="testsListDialog" class="tests-search-box">
         <caption class="visually-hidden">Test Suites</caption>
         <thead>
           <tr>
-            <th>Standard</th>
-            <th>Version</th>
             <th>Title</th>
             <th>Rule ID</th>
+            <th>Standard</th>
+            <th>Version</th>
+            <th>Level</th>
+            <th>Success Criteria</th>
           </tr>
         </thead>
         <tbody></tbody>
@@ -120,10 +122,12 @@ const createMenuListWithAllTests = (files) => {
     const tr = $('<tr></tr>');
 
     tr.append(`
-      <td>${testDetails.standard}</td>
-      <td>${testDetails.standardVersion}</td>
       <td><a href="${new URL(relativePath, baseHrefTo).href}">${ruleTitle}</a></td>
       <td><code>${testDetails.ruleId}</code></td>
+      <td>${testDetails.standard}</td>
+      <td>${testDetails.standardVersion}</td>
+      <td>${testDetails.standardLevel}</td>
+      <td>${testDetails.standardSuccessCriteria}</td>
     `);
 
     tbody.append(tr);

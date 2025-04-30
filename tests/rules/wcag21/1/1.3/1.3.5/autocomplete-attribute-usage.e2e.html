@@ -2,9 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>The aria attribute conflict test</title>
+    <title>Add autocomplete attribute to form controls to help users fill out forms more efficiently.</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="help" href="https://html.spec.whatwg.org/multipage/#the-form-element" />
+    <link rel="help" href="https://html.spec.whatwg.org/multipage/#attr-fe-autocomplete" />
 
     <link rel="icon" href="https://sitelint.github.io/auditor-tests/assets/images/favicon.ico" sizes="any" />
     <link rel="icon" href="https://sitelint.github.io/auditor-tests/assets/images/favicon.svg" type="image/svg+xml" />
@@ -13,12 +15,12 @@
 
     <script type="application/ld+json" id="testDetails">
       {
-        "ruleId": "identify-input-purpose",
-        "ruleTitle": "Invalid definition of input purpose.",
-        "standard": "WCAG",
-        "standardSuccessCriteria": "1.3.5",
-        "standardVersion": "2.1",
-        "standardLevel": "AA"
+        "ruleId": "autocomplete-attribute-usage",
+        "ruleTitle": "Add autocomplete attribute to form controls to help users fill out forms more efficiently.",
+        "standard": "SiteLint",
+        "standardSuccessCriteria": "N/A",
+        "standardVersion": "1.0",
+        "standardLevel": "N/A"
       }
     </script>
 
@@ -154,7 +156,8 @@
           </form>
         </search>
       </dialog>
-      <h1>Invalid definition of input purpose.</h1>
+
+      <h1>Add autocomplete attribute to form controls to help users fill out forms more efficiently.</h1>
 
       <details>
         <summary>Test details</summary>
@@ -187,7 +190,157 @@
           <h3>Should fail...</h3>
 
           <form>
-            <input type="text" autocomplete="bla" name="additionalName" />
+            <fieldset>
+              <legend>Example Form Controls</legend>
+
+              <div class="row mb-2">
+                <div class="col-md-2">
+                  <label for="text">Text Input:</label>
+                </div>
+                <div class="col-md-10">
+                  <input type="text" id="text" name="text" />
+                </div>
+              </div>
+
+              <div class="row mb-2">
+                <div class="col-md-2">
+                  <label for="search">Search Input:</label>
+                </div>
+                <div class="col-md-10">
+                  <input type="search" id="search" name="search" />
+                </div>
+              </div>
+
+              <div class="row mb-2">
+                <div class="col-md-2">
+                  <label for="url">URL Input:</label>
+                </div>
+                <div class="col-md-10">
+                  <input type="url" id="url" name="url" />
+                </div>
+              </div>
+
+              <div class="row mb-2">
+                <div class="col-md-2">
+                  <label for="tel">Telephone Input:</label>
+                </div>
+                <div class="col-md-10">
+                  <input type="tel" id="tel" name="tel" />
+                </div>
+              </div>
+
+              <div class="row mb-2">
+                <div class="col-md-2">
+                  <label for="email">Email Input:</label>
+                </div>
+                <div class="col-md-10">
+                  <input type="email" id="email" name="email" />
+                </div>
+              </div>
+
+              <div class="row mb-2">
+                <div class="col-md-2">
+                  <label for="password">Password Input:</label>
+                </div>
+                <div class="col-md-10">
+                  <input type="password" id="password" name="password" />
+                </div>
+              </div>
+
+              <div class="row mb-2">
+                <div class="col-md-2">
+                  <label for="date">Date Input:</label>
+                </div>
+                <div class="col-md-10">
+                  <input type="date" id="date" name="date" />
+                </div>
+              </div>
+
+              <div class="row mb-2">
+                <div class="col-md-2">
+                  <label for="month">Month Input:</label>
+                </div>
+                <div class="col-md-10">
+                  <input type="month" id="month" name="month" />
+                </div>
+              </div>
+
+              <div class="row mb-2">
+                <div class="col-md-2">
+                  <label for="week">Week Input:</label>
+                </div>
+                <div class="col-md-10">
+                  <input type="week" id="week" name="week" />
+                </div>
+              </div>
+
+              <div class="row mb-2">
+                <div class="col-md-2">
+                  <label for="time">Time Input:</label>
+                </div>
+                <div class="col-md-10">
+                  <input type="time" id="time" name="time" />
+                </div>
+              </div>
+
+              <div class="row mb-2">
+                <div class="col-md-2">
+                  <label for="datetime-local">Datetime-local Input:</label>
+                </div>
+                <div class="col-md-10">
+                  <input type="datetime-local" id="datetime-local" name="datetime-local" />
+                </div>
+              </div>
+
+              <div class="row mb-2">
+                <div class="col-md-2">
+                  <label for="number">Number Input:</label>
+                </div>
+                <div class="col-md-10">
+                  <input type="number" id="number" name="number" />
+                </div>
+              </div>
+
+              <div class="row mb-2">
+                <div class="col-md-2">
+                  <label for="range">Range Input:</label>
+                </div>
+                <div class="col-md-10">
+                  <input type="range" id="range" name="range" min="0" max="100" />
+                </div>
+              </div>
+
+              <div class="row mb-2">
+                <div class="col-md-2">
+                  <label for="color">Color Input:</label>
+                </div>
+                <div class="col-md-10">
+                  <input type="color" id="color" name="color" />
+                </div>
+              </div>
+
+              <div class="row mb-2">
+                <div class="col-md-2">
+                  <label for="select">Select Dropdown:</label>
+                </div>
+                <div class="col-md-10">
+                  <select id="select" name="select">
+                    <option value="">Please choose</option>
+                    <option value="option1">Option 1</option>
+                    <option value="option2">Option 2</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="row mb-2">
+                <div class="col-md-2">
+                  <label for="textarea">Textarea:</label>
+                </div>
+                <div class="col-md-10">
+                  <textarea id="textarea" name="textarea" rows="4" cols="30"></textarea>
+                </div>
+              </div>
+            </fieldset>
           </form>
         </div>
       </main>

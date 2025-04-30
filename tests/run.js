@@ -6,17 +6,6 @@ const http2 = require('node:http2');
 const url = require('node:url');
 const glob = require('glob-all');
 
-const args = process.argv.slice(2);
-
-/**
- * @param {string} argName
- */
-function getArgumentValue(argName) {
-  const arg = args.find((arg) => arg.startsWith(`--${argName}=`));
-
-  return arg ? arg.split('=')[1] : null;
-}
-
 /**
  * @param {import("http").ServerResponse<import("http").IncomingMessage> & { req: import("http").IncomingMessage; }} res
  * @param {fs.PathOrFileDescriptor} htmlFilePath

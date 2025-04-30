@@ -31,6 +31,26 @@ h2 {
   search {
     position: relative;
 
+    table {
+      tbody {
+        tr {
+          &:focus-within,
+          &:hover {
+            td {
+              background-color: $color-3;
+            }
+          }
+
+          td {
+            &:nth-child(2),
+            &:nth-child(3) {
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+
     .btn-close-dialog {
       position: absolute;
       right: -1rem;
