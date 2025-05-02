@@ -2,7 +2,8 @@ const onDocumentReady = () => {
 
   const handleSearchSuites = () => {
     const searchTestSuites = document.querySelector('#searchTestSuites');
-    const tableRows = document.querySelectorAll('#testsListDialog table tbody tr');
+    const tableRows = document.querySelectorAll('#commonBar table tbody tr');
+    const detailsElement = document.querySelector('#commonBar details');
 
     if (searchTestSuites === null || tableRows.length === 0) {
       return;
@@ -12,8 +13,10 @@ const onDocumentReady = () => {
 
     const onChangeSearchTestSuites = (event) => {
       const input = event.target;
-      const value = input.value.toLowerCase();
-      const searchWords = value.split(' ');
+      const value = input.value.trim().toLowerCase();
+      const searchWords = value.split(' ').filter(word => word.length > 0);
+
+      detailsElement.open = searchWords.length > 0;
 
       window.clearTimeout(timeoutId);
 

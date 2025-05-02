@@ -11968,28 +11968,27 @@ h2,
   font-family: "Inter", "SF Pro Text", "Helvetica Neue", "Helvetica", "Segoe UI", "Arial", sans-serif;
 }
 
-.tests-search-box {
-  background: #fff;
-  left: auto;
-  margin: 0;
-  max-height: calc(100vh - 32px);
-  width: 40vw;
-  overflow-y: scroll;
-  position: fixed;
-  right: 1rem;
-  top: 1rem;
-  z-index: 2147483600;
+body {
+  padding: 16px;
 }
-.tests-search-box search {
+
+.common-bar {
+  background: #fff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05), 0 2px 3px 0 rgba(0, 0, 0, 0.1);
+  padding: 8px 16px;
   position: relative;
 }
-.tests-search-box search table tbody tr:focus-within td, .tests-search-box search table tbody tr:hover td {
+.common-bar__section {
+  margin: 0;
+  padding: 16px;
+}
+.common-bar search table tbody tr:focus-within td, .common-bar search table tbody tr:hover td {
   background-color: #f6f6f6;
 }
-.tests-search-box search table tbody tr td:nth-child(2), .tests-search-box search table tbody tr td:nth-child(3) {
+.common-bar search table tbody tr td:nth-child(2), .common-bar search table tbody tr td:nth-child(3) {
   text-align: center;
 }
-.tests-search-box search .btn-close-dialog {
+.common-bar search .btn-close-dialog {
   position: absolute;
   right: -1rem;
   top: -1rem;

@@ -26,18 +26,21 @@
   </head>
 
   <body>
-    <div class="container">
-      <dialog open="" id="testsListDialog" class="tests-search-box">
-        <search>
-          <div class="row mb-3">
-            <div class="col-md-12">
-              <div class="d-flex align-items-center">
-                <label for="searchTestSuites" class="me-2">Search</label>
-                <input type="search" id="searchTestSuites" value="" class="form-control flex-grow-1 me-5" />
-              </div>
-            </div>
+    <div id="commonBar" class="container common-bar mb-5">
+      <div class="row mb-3">
+        <div class="col-md-12">
+          <div class="d-flex align-items-center">
+            <label for="searchTestSuites" class="me-2">Search</label>
+            <input type="search" id="searchTestSuites" value="" class="form-control flex-grow-1" />
           </div>
-          <form method="dialog">
+        </div>
+      </div>
+
+      <details>
+        <summary>Test suites</summary>
+
+        <section class="common-panel__section">
+          <search>
             <table class="table caption-top">
               <caption class="visually-hidden">
                 Test Suites
@@ -99,16 +102,6 @@
                   <td>1.3.5</td>
                 </tr>
                 <tr>
-                  <td>
-                    <a href="https://sitelint.github.io/auditor-tests/rules/wcag22/target-size-minimum/target-size-minimum.e2e.html">Example rule title</a>
-                  </td>
-                  <td><code>example-rule-id</code></td>
-                  <td>Example standard</td>
-                  <td>2.2</td>
-                  <td>AA</td>
-                  <td>Not defined</td>
-                </tr>
-                <tr>
                   <td><a href="https://sitelint.github.io/auditor-tests/index.html">Example rule title</a></td>
                   <td><code>example-rule-id</code></td>
                   <td>Example standard</td>
@@ -118,42 +111,11 @@
                 </tr>
               </tbody>
             </table>
-
-            <div class="row">
-              <div class="col-md-12 d-flex justify-content-end">
-                <button type="submit" class="btn btn-icon btn-close-dialog" data-action="closeDialog">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    fill="currentColor"
-                    viewBox="0 0 16 16"
-                    aria-hidden="true"
-                    focusable="false"
-                    style="border-radius: 3px"
-                  >
-                    <path
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="1"
-                      d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"
-                    ></path>
-                    <path
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="1"
-                      d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"
-                    ></path>
-                  </svg>
-                  <span class="visually-hidden">Close Test Suites dialog</span>
-                </button>
-              </div>
-            </div>
-          </form>
-        </search>
-      </dialog>
+          </search>
+        </section>
+      </details>
+    </div>
+    <div class="container">
       <h1>Invalid definition of input purpose.</h1>
 
       <details>
@@ -186,8 +148,91 @@
         <div class="test-suite">
           <h3>Should fail...</h3>
 
-          <form>
-            <input type="text" autocomplete="bla" name="additionalName" />
+          <!-- Most of the fields in this form have invalid autocomplete attributes. -->
+          <form action="autocompletetype.html" method="post">
+            <!-- Valid field (sanity check) -->
+            <input id="valid-pre-garbage" autocomplete="email" /><br />
+            <!-- Garbage (a.k.a. unrecognized) tokens should cause parsing to fail. -->
+            <input autocomplete="garbage" /><br />
+            <input autocomplete="garbage email" /><br />
+            <input autocomplete="email garbage" /><br />
+            <input autocomplete="garbage shipping email" /><br />
+            <input autocomplete="shipping garbage email" /><br />
+            <input autocomplete="shipping email garbage" /><br />
+            <input autocomplete="garbage section-foo email" /><br />
+            <input autocomplete="section-foo garbage email" /><br />
+            <input autocomplete="section-foo email garbage" /><br />
+            <input autocomplete="garbage work email" /><br />
+            <input autocomplete="work garbage email" /><br />
+            <input autocomplete="work email garbage" /><br />
+            <input autocomplete="garbage section-foo shipping email" /><br />
+            <input autocomplete="section-foo garbage shipping email" /><br />
+            <input autocomplete="section-foo shipping garbage email" /><br />
+            <input autocomplete="section-foo shipping email garbage" /><br />
+            <input autocomplete="garbage section-foo shipping work email" /><br />
+            <input autocomplete="section-foo garbage shipping work email" /><br />
+            <input autocomplete="section-foo shipping garbage work email" /><br />
+            <input autocomplete="section-foo shipping work garbage email" /><br />
+            <input autocomplete="section-foo shipping work email garbage" /><br />
+            <!-- Valid field (sanity check) -->
+            <input id="valid-pre-order" autocomplete="email" /><br />
+            <!-- Order matters. -->
+            <input autocomplete="email work" /><br />
+            <input autocomplete="email shipping" /><br />
+            <input autocomplete="email section-foo" /><br />
+            <input autocomplete="shipping email work" /><br />
+            <input autocomplete="work shipping email" /><br />
+            <input autocomplete="work email shipping" /><br />
+            <input autocomplete="email shipping work" /><br />
+            <input autocomplete="email work shipping" /><br />
+            <input autocomplete="section-foo email work" /><br />
+            <input autocomplete="work section-foo email" /><br />
+            <input autocomplete="work email section-foo" /><br />
+            <input autocomplete="email section-foo work" /><br />
+            <input autocomplete="email work section-foo" /><br />
+            <input autocomplete="shipping section-foo email" /><br />
+            <input autocomplete="shipping email section-foo" /><br />
+            <input autocomplete="section-foo email shipping" /><br />
+            <input autocomplete="email shipping section-foo" /><br />
+            <input autocomplete="email section-foo shipping" /><br />
+            <input autocomplete="section-foo work email shipping" /><br />
+            <input autocomplete="section-foo work shipping email" /><br />
+            <input autocomplete="section-foo email shipping work" /><br />
+            <input autocomplete="section-foo email work shipping" /><br />
+            <input autocomplete="section-foo shipping email work" /><br />
+            <input autocomplete="shipping email section-foo work" /><br />
+            <input autocomplete="shipping email work section-foo" /><br />
+            <input autocomplete="shipping section-foo email work" /><br />
+            <input autocomplete="shipping section-foo work email" /><br />
+            <input autocomplete="shipping work email section-foo" /><br />
+            <input autocomplete="shipping work section-foo email" /><br />
+            <input autocomplete="work email section-foo shipping" /><br />
+            <input autocomplete="work email shipping section-foo" /><br />
+            <input autocomplete="work section-foo email shipping" /><br />
+            <input autocomplete="work section-foo shipping email" /><br />
+            <input autocomplete="work shipping email section-foo" /><br />
+            <input autocomplete="work shipping section-foo email" /><br />
+            <input autocomplete="email section-foo shipping work" /><br />
+            <input autocomplete="email section-foo work shipping" /><br />
+            <input autocomplete="email shipping section-foo work" /><br />
+            <input autocomplete="email shipping work section-foo" /><br />
+            <input autocomplete="email work section-foo shipping" /><br />
+            <input autocomplete="email work shipping section-foo" /><br />
+            <!-- Valid field (sanity check) -->
+            <input id="valid-pre-repetition" autocomplete="email" /><br />
+            <!-- Repeated fields should be disallowed. -->
+            <input autocomplete="email email" /><br />
+            <input autocomplete="work work email" /><br />
+            <input autocomplete="work home email" /><br />
+            <input autocomplete="shipping billing email" /><br />
+            <input autocomplete="section-foo section-bar email" /><br />
+            <!-- Valid field (sanity check) -->
+            <input id="valid-pre-combinations" autocomplete="email" /><br />
+            <!-- Some combinations of tokens are invalid. -->
+            <input autocomplete="on email" /><br />
+            <input autocomplete="off email" /><br />
+            <input autocomplete="work given-name" /><br />
+            <input autocomplete="work address-line1" /><br />
           </form>
         </div>
       </main>

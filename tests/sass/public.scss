@@ -16,21 +16,24 @@ h2 {
   font-family: 'Inter', 'SF Pro Text', 'Helvetica Neue', 'Helvetica', 'Segoe UI', 'Arial', sans-serif;
 }
 
-.tests-search-box {
+body {
+  padding: $padding;
+}
+
+.common-bar {
   background: #fff;
-  left: auto;
-  margin: 0;
-  max-height: calc(100vh - #{$padding * 2});
-  width: 40vw;
-  overflow-y: scroll;
-  position: fixed;
-  right: 1rem;
-  top: 1rem;
-  z-index: 2147483600; // Max: 2147483647
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.05),
+    0 2px 3px 0 rgba(0, 0, 0, 0.1);
+  padding: $padding-sm $padding;
+  position: relative;
+
+  &__section {
+    margin: 0;
+    padding: $padding;
+  }
 
   search {
-    position: relative;
-
     table {
       tbody {
         tr {
