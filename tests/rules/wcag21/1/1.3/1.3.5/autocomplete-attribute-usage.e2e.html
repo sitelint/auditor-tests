@@ -120,35 +120,13 @@
     <div class="container">
       <h1>Add autocomplete attribute to form controls to help users fill out forms more efficiently.</h1>
 
-      <details>
-        <summary>Test details</summary>
-
-        <table>
-          <caption>
-            All details related to the test case
-          </caption>
-          <thead>
-            <tr>
-              <th>Audit type</th>
-              <th>Standard</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Accessibility</td>
-              <td>WCAG 2.0</td>
-            </tr>
-          </tbody>
-        </table>
-      </details>
-
       <!-- Public content -->
 
       <main>
         <h2>Test Suites</h2>
 
         <div class="test-suite">
-          <h3>Should fail...</h3>
+          <h3>Incorrect examples</h3>
 
           <form>
             <fieldset>
@@ -299,6 +277,164 @@
                 </div>
                 <div class="col-md-10">
                   <textarea id="textarea" name="textarea" rows="4" cols="30"></textarea>
+                </div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+
+        <div class="test-suite">
+          <h3>Correct examples</h3>
+
+          <form autocomplete="on">
+            <fieldset>
+              <legend>Example Form Controls</legend>
+
+              <div class="row mb-2">
+                <div class="col-md-2">
+                  <label for="text_1">Text Input:</label>
+                </div>
+                <div class="col-md-10">
+                  <input type="text" id="text_1" name="text" autocomplete="name" />
+                </div>
+              </div>
+
+              <div class="row mb-2">
+                <div class="col-md-2">
+                  <label for="search_1">Search Input:</label>
+                </div>
+                <div class="col-md-10">
+                  <input type="search" id="search_1" name="search" autocomplete="off" />
+                </div>
+              </div>
+
+              <div class="row mb-2">
+                <div class="col-md-2">
+                  <label for="url_1">URL Input:</label>
+                </div>
+                <div class="col-md-10">
+                  <input type="url" id="url_1" name="url" autocomplete="url" />
+                </div>
+              </div>
+
+              <div class="row mb-2">
+                <div class="col-md-2">
+                  <label for="tel_1">Telephone Input:</label>
+                </div>
+                <div class="col-md-10">
+                  <input type="tel" id="tel_1" name="tel" autocomplete="tel" />
+                </div>
+              </div>
+
+              <div class="row mb-2">
+                <div class="col-md-2">
+                  <label for="email_1">Email Input:</label>
+                </div>
+                <div class="col-md-10">
+                  <input type="email" id="email_1" name="email" autocomplete="email" />
+                </div>
+              </div>
+
+              <div class="row mb-2">
+                <div class="col-md-2">
+                  <label for="password_1">Password Input:</label>
+                </div>
+                <div class="col-md-10">
+                  <input type="password" id="password_1" name="password" autocomplete="current-password" />
+                </div>
+              </div>
+
+              <div class="row mb-2">
+                <div class="col-md-2">
+                  <label for="date_1">Date Input:</label>
+                </div>
+                <div class="col-md-10">
+                  <input type="date" id="date_1" name="date" autocomplete="bday" />
+                </div>
+              </div>
+
+              <div class="row mb-2">
+                <div class="col-md-2">
+                  <label for="month_1">Month Input:</label>
+                </div>
+                <div class="col-md-10">
+                  <input type="month" id="month_1" name="month" autocomplete="bday-month" />
+                </div>
+              </div>
+
+              <div class="row mb-2">
+                <div class="col-md-2">
+                  <label for="week_1">Week Input:</label>
+                </div>
+                <div class="col-md-10">
+                  <input type="week" id="week_1" name="week" autocomplete="off" />
+                </div>
+              </div>
+
+              <div class="row mb-2">
+                <div class="col-md-2">
+                  <label for="time_1">Time Input:</label>
+                </div>
+                <div class="col-md-10">
+                  <input type="time" id="time_1" name="time" autocomplete="off" />
+                </div>
+              </div>
+
+              <div class="row mb-2">
+                <div class="col-md-2">
+                  <label for="datetime-local_1">Datetime-local Input:</label>
+                </div>
+                <div class="col-md-10">
+                  <input type="datetime-local" id="datetime-local_1" name="datetime-local" autocomplete="off" />
+                </div>
+              </div>
+
+              <div class="row mb-2">
+                <div class="col-md-2">
+                  <label for="number_1">Number Input:</label>
+                </div>
+                <div class="col-md-10">
+                  <input type="number" id="number_1" name="number" autocomplete="off" />
+                </div>
+              </div>
+
+              <div class="row mb-2">
+                <div class="col-md-2">
+                  <label for="range_1">Range Input:</label>
+                </div>
+                <div class="col-md-10">
+                  <input type="range" id="range_1" name="range" min="0" max="100" autocomplete="off" />
+                </div>
+              </div>
+
+              <div class="row mb-2">
+                <div class="col-md-2">
+                  <label for="color_1">Color Input:</label>
+                </div>
+                <div class="col-md-10">
+                  <input type="color" id="color_1" name="color" autocomplete="off" />
+                </div>
+              </div>
+
+              <div class="row mb-2">
+                <div class="col-md-2">
+                  <label for="select_1">Select Dropdown:</label>
+                </div>
+                <div class="col-md-10">
+                  <select id="select_1" name="select" autocomplete="off">
+                    <option value="">Please choose</option>
+                    <option value="option1">Option 1</option>
+                    <option value="option2">Option 2</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="row mb-2">
+                <div class="col-md-2">
+                  <label for="textarea_1">Textarea:</label>
+                </div>
+                <div class="col-md-10">
+                  <textarea id="textarea_1" name="textarea" rows="4" cols="30" autocomplete="street-address"></textarea>
                 </div>
               </div>
             </fieldset>
