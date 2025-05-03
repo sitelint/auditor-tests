@@ -24,10 +24,15 @@
       }
     </script>
 
-    <script id="appScript" src="https://sitelint.github.io/auditor-tests/assets/scripts/app.js"></script>
+    <script
+      id="appScript"
+      src="https://sitelint.github.io/auditor-tests/assets/scripts/app.js"
+      integrity="sha256-1f3JlAV3Wt4Zw50X64EvBqj2kcM1h98qiuf+0yaG47U="
+      crossorigin="anonymous"
+    ></script>
   </head>
 
-  <body>
+  <body data-bs-theme="light">
     <div id="commonBar" class="container common-bar mb-5">
       <div class="row mb-3">
         <div class="col-md-12">
@@ -104,7 +109,7 @@
                   <td>1.3.5</td>
                 </tr>
                 <tr>
-                  <td><a href="https://sitelint.github.io/auditor-tests/index.html">Example rule title</a></td>
+                  <td><a href="https://sitelint.github.io/auditor-tests/index.html">Example rule title for index</a></td>
                   <td><code>example-rule-id</code></td>
                   <td>Example standard</td>
                   <td>2.0</td>
@@ -280,6 +285,10 @@
                 </div>
               </div>
             </fieldset>
+
+            <div class="mb-4">
+              <button type="submit">Submit</button>
+            </div>
           </form>
         </div>
 
@@ -438,14 +447,20 @@
                 </div>
               </div>
             </fieldset>
+
+            <div class="mb-4">
+              <button type="submit">Submit</button>
+            </div>
           </form>
         </div>
       </main>
 
       <footer>
-        Web test suites used by <a href="https://www.sitelint.com">SiteLint</a> Auditor. Use
-        <a href="https://chromewebstore.google.com/detail/sitelint-web-audit-tools/cgohmmflfahecpnbkpelccmhjmaobnfp">SiteLint chromium-based extension</a> for
-        testing.
+        Web test suites used by <a href="https://www.sitelint.com" rel="noreferrer" target="_blank">SiteLint</a> Auditor. Use
+        <a href="https://chromewebstore.google.com/detail/sitelint-web-audit-tools/cgohmmflfahecpnbkpelccmhjmaobnfp" rel="noreferrer" target="_blank"
+          >SiteLint chromium-based extension</a
+        >
+        for testing.
       </footer>
     </div>
   </body>

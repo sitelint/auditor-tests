@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import crypto from 'node:crypto';
 import * as pathPosix from 'node:path/posix';
 import { fileURLToPath } from 'node:url';
 import glob from 'glob-all';
@@ -37,6 +38,15 @@ const formatHTML = async (html) => {
   }
 
   return formattedHTML;
+};
+
+const generateSriHash = (file) => {
+  const encoding  = 'utf8';
+  const body = fs.readFileSync(file, { encoding: encoding });
+  const hash = crypto.createHash('sha256').update(body, encoding);
+  const sha  = hash.digest('base64');
+
+  return `sha256-${sha}`;
 };
 
 const baseHrefFrom = getArgumentValue('baseHrefFrom');
@@ -158,8 +168,9 @@ const adjustTestHTML = async (files) => {
       existingAppScript.remove();
     }
 
+    const fullPathToScript = path.join(rootDir, '../tests/assets/scripts/app.js');
     const assetPath = pathPosix.relative(path.join(rootDir, '../'), 'assets/scripts/app.js');
-    const appJs = $(`<script id="appScript" src="${new URL(assetPath, baseHrefTo).href}"></script>`);
+    const appJs = $(`<script id="appScript" src="${new URL(assetPath, baseHrefTo).href}" integrity=${generateSriHash(fullPathToScript)} crossorigin="anonymous"></script>`);
     const head = $('head');
 
     head.append(appJs);

@@ -1,0 +1,22 @@
+@use "sass:color";
+
+$light-theme: (
+  "primary": #007bff
+);
+
+$dark-theme: (
+  "primary": #6610f2
+);
+
+$themes: (
+  "light": $light-theme,
+  "dark": $dark-theme,
+);
+
+@each $theme-name, $theme in $themes {
+  [data-bs-theme="#{$theme-name}"] {
+    @each $variable, $value in $theme {
+      --bs-#{$variable}: #{$value};
+    }
+  }
+}
