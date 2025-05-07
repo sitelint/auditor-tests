@@ -232,6 +232,86 @@
 
             <div class="test-suite">
               <h3 class="alert alert-success">Correct examples</h3>
+
+              <style>
+                .focus-visible:focus,
+                .focus-visible:focus-within {
+                  outline: 0;
+                  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+                }
+              </style>
+
+              <div>
+                <div tabindex="0">Element with tabindex</div>
+                <div contenteditable="true" role="textbox" aria-multiline="true" aria-label="Editable content">Content editable element</div>
+                <div>
+                  <a href="https://www.sitelint.com">Link with href</a>
+                </div>
+                <div>
+                  <area href="#" shape="rect" coords="0,0,100,100" />
+                </div>
+
+                <div>
+                  <button type="button" class="btn btn-primary">Button element</button>
+                </div>
+
+                <div>
+                  <form action=""></form>
+                </div>
+
+                <div>
+                  <embed src="about:blank" class="focus-ring border rounded-2" style="height: 30px; width: 100px" />
+                </div>
+
+                <div>
+                  <iframe
+                    src="about:blank"
+                    tabindex="0"
+                    class="focus-visible border rounded-2"
+                    style="height: 30px; width: 100px"
+                    title="Example iframe"
+                  ></iframe>
+                </div>
+
+                <div>
+                  <label for="exampleInput">exampleInput</label>
+                  <input type="text" class="form-control" id="exampleInput" name="exampleInput" />
+                </div>
+
+                <div>
+                  <label for="exampleSelect">exampleSelect</label>
+                  <select class="form-select" id="exampleSelect" name="exampleSelect">
+                    <option>Option</option>
+                  </select>
+                </div>
+
+                <div>
+                  <details>
+                    <summary>Summary element</summary>
+                  </details>
+                </div>
+
+                <div>
+                  <label for="textarea">Textarea</label>
+                  <textarea class="orm-control" id="textarea" name="textarea" row="1"></textarea>
+                </div>
+
+                <div>
+                  <audio controls="">
+                    <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBIAAAABAAEAQB8AAEAfAAABAAgAZGF0YU" type="audio/wav" />
+                  </audio>
+                  <track kind="captions" src="transcript-file.vtt" srclang="en" label="English" />
+                </div>
+
+                <div>
+                  <video controls="">
+                    <source
+                      src="data:video/webm;base64,GkXfo0DsPgH77gWvkEaaKAAADAldELdqIDBAwrQoKAACLAylcDAADgIqncKAACGAAAAAAAmQwUGCAAAGHjVldGGAACBgYYZqQPAAABBAEAQB8AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RSTlMzMzctbGVmdEJHQiBjb2xyIDIgODFdAAACPVltYm1bAAAAAAABAAEDAwMDbW5kYXAAAGySURBVDhPpZNBDoIwEEUxqoIGAQIwgJCDEIyOobUKsKGdbB2OrWuaguBUVLcmnYsLCwrCxcLDQu9fn9fpaAgKEwhIIFJkiCBcIJhiNEIVSpLFDyDxlcjmgziUD8rpOOHSYkMAzxsJgtBopZvEPRlMWTKVWGIpGLkZWigz2JmmxAKWKBHLY8TOKNnnBhWrDXw9qimKKKtuv00ydPTMcbyCVrruxLqdjujrKtzdjuzmtDjmdrLPG/DlmPrO9KiGDRRLw9LP1FcmDIKKWSCODQ4eeff7Zt27bhw4eXv7+++/f39ra2tpZWFiY2RlZmdoaWhpYWx8bXcyMDEyMTI4NjAwM7Ozs7O0tDU0Ngb28dGxlZ2FtbW1sbnktbnM9c3d3czphty5vNjpkdXNhOnhtcG1lbT6c3RSZWYgeG1wxTU0MC4yMElEPSJXaWRnZXROYW1lIj4KPE1MOyBJbmRleDotLWFkb2JlOmFkb2JlLXdpZGdldE1PSBiYXNlIDx4bXBNTTpEb2M6ADJEZUYlQWRvYmUgWE1MOkFkb2JlIFdpZGdldE1BPUyA8cmRmOlJERiB4bXBNTTpEb2M6ADJEZUYlQWRvYmUgWE1MOklucyIgeG1sOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90bGluZyBQdWJsaWMgQVNUIDcuMDAiIHhtcE1NOklucyIgeG1sOkNyZWF0ZURhdGU9IiIgeG1wTU06RG9jdW1lbnRJRD0iYWRvYmU6ZG9jaWQ6cGhvdG9zaG9wOjAwMDowMDAyOjAxMS0wMDowMDowMCINCnhtcDpNZXRhZGF0YURhdGU9IiIgeG1wTU06T3JpZ2luYWxEb2N1bWVudElEPSJ4bXAuZGlkOkI3NTBCQTAzMEYwQTExRTdCMkJBMUVBODFDNzdEMEY2RjciICAgIGRlcml2YXRlTnV0aW9uPj5gADw/eHBhY2tldCBiZWdpbj0i77u/IiB4biAAZikmf/2Q=="
+                      type="video/webm"
+                    />
+                  </video>
+                </div>
+              </div>
             </div>
           </main>
         </div>
