@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import https from 'node:https';
 import * as pathPosix from 'node:path/posix';
 import { fileURLToPath } from 'node:url';
 import glob from 'glob-all';
@@ -34,7 +35,7 @@ const formatHTML = async (html) => {
 
     formattedHTML = await prettier.format(html, { ...config, parser: 'html' });
   } catch (err) {
-    console.warn('[build/createNavListOfAllRules.js] Unable to format HTML using prettier', err);
+    console.warn('[build/processRules.js] Unable to format HTML using prettier', err);
   }
 
   return formattedHTML;
@@ -49,6 +50,42 @@ const generateSriHash = (file) => {
   return `sha256-${sha}`;
 };
 
+const generateSriHashFromBuffer = (buffer) => {
+  const hash = crypto.createHash('sha256').update(buffer);
+  const sha = hash.digest('base64');
+
+  return `sha256-${sha}`;
+};
+
+const getRemoteFileIntegrity = async (url) => {
+  return new Promise((resolve, reject) => {
+
+    const options = {
+      method: 'GET',
+    };
+
+    const req = https.request(url, options, (res) => {
+      let data = '';
+
+      res.on('data', (chunk) => {
+        data += chunk;
+      });
+
+      res.on('end', () => {
+        const integrity = generateSriHashFromBuffer(data);
+
+        resolve(integrity);
+      });
+    });
+
+    req.on('error', (error) => {
+      reject(error);
+    });
+
+    req.end();
+  });
+};
+
 const baseHrefFrom = getArgumentValue('baseHrefFrom');
 const baseHrefTo = getArgumentValue('baseHrefTo');
 const rootDir = path.dirname(fileURLToPath(import.meta.url));
@@ -60,7 +97,7 @@ const globPattern = [
 const files = glob.sync(globPattern);
 
 if (files.length === 0) {
-  console.log('[build/createNavListOfAllRules.js] No files found matching the glob pattern:', globPattern);
+  console.log('[build/processRules.js] No files found matching the glob pattern:', globPattern);
   process.exit(0);
 }
 
@@ -156,7 +193,7 @@ const adjustTestHTML = async (files) => {
       if (body.length > 0) {
         body.prepend(searchBox);
       } else {
-        console.log('[build/createNavListOfAllRules.js] No <body> tag found in file:', file);
+        console.log('[build/processRules.js] No <body> tag found in file:', file);
       }
     }
 
@@ -177,14 +214,24 @@ const adjustTestHTML = async (files) => {
 
     // Process <link> elements
 
-    const linkElements = $('link');
+    const linkElements = $('link[rel="stylesheet"]');
 
-    linkElements.each((index, element) => {
+    linkElements.each(async (index, element) => {
       const href = $(element).attr('href');
 
       if (href) {
         const newHref = href.replace(baseHrefFrom, baseHrefTo);
         $(element).attr('href', newHref);
+
+        let integrity = '';
+
+        try {
+          integrity = await getRemoteFileIntegrity(newHref);
+
+          $(element).attr('integrity', integrity);
+        } catch (error) {
+          console.error('[build/processRules.js] Error fetching remote file:', error);
+        }
       }
     });
 
